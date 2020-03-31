@@ -1,8 +1,7 @@
 package routers
 
 import (
-	"encoding/json"
-	"net/http"
+	"go-medium/controllers"
 
 	"github.com/gorilla/mux"
 )
@@ -10,10 +9,6 @@ import (
 // Registra as rotas da aplicacao
 func GetRouter() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/", MainHandler).Methods("GET")
+	router.HandleFunc("/", controllers.HomeController).Methods("GET")
 	return router
-}
-
-func MainHandler(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode("Medium")
 }
