@@ -5,6 +5,7 @@ import (
 	"go-medium/models"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"go-medium/repositories"
@@ -21,6 +22,17 @@ func ListPostsController(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(res).Encode(posts)
+}
+
+func GetPostController(res http.ResponseWriter, req *http.Request) {
+	params := mux.Vars(req)
+
+	var postID, _ = strconv.ParseInt(params["id"], 10, 64)
+
+	var post = repositories.GetPostById(postID)
+
+	res.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(res).Encode(post)
 }
 
 func AddPostController(res http.ResponseWriter, req *http.Request) {
