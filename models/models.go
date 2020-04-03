@@ -10,5 +10,3 @@ type Post struct {
 	Text    string    `json:"text"`
 	Created time.Time `json:"created"`
 }
-
-var posts []Post
