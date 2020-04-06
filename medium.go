@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"go-medium/models"
-	"go-medium/repositories"
-	"go-medium/routers"
+	"github.com/felipefrbr/medium/models"
+	"github.com/felipefrbr/medium/repositories"
+	"github.com/felipefrbr/medium/routers"
 )
 
 func main() {

@@ -2,14 +2,13 @@ package controllers
 
 import (
 	"encoding/json"
-	"go-medium/models"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"go-medium/repositories"
-
+	"github.com/felipefrbr/medium/models"
+	"github.com/felipefrbr/medium/repositories"
 	"github.com/gorilla/mux"
 )
 

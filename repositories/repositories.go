@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"go-medium/models"
+	"github.com/felipefrbr/medium/models"
 )
 
 var posts []models.Post

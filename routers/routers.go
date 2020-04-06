@@ -1,8 +1,7 @@
 package routers
 
 import (
-	"go-medium/controllers"
-
+	"github.com/felipefrbr/medium/controllers"
 	"github.com/gorilla/mux"
 )
 
