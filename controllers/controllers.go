@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -36,19 +35,33 @@ func GetPostController(res http.ResponseWriter, req *http.Request) {
 
 func AddPostController(res http.ResponseWriter, req *http.Request) {
 
-	params := mux.Vars(req)
-
 	var post models.Post
 	_ = json.NewDecoder(req.Body).Decode(&post)
 
 	var id = len(repositories.ListAllPosts()) + 1
 
-	log.Println(params)
-
 	post.ID = int64(id)
 	post.Created = time.Now()
 
 	repositories.AddPost(post)
+
+	res.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(res).Encode(post)
+}
+
+func UpdatePostController(res http.ResponseWriter, req *http.Request) {
+	params := mux.Vars(req)
+
+	var postID, _ = strconv.ParseInt(params["id"], 10, 64)
+
+	post := repositories.GetPostById(postID)
+
+	var postRequest models.Post
+	_ = json.NewDecoder(req.Body).Decode(&postRequest)
+
+	post.Text = postRequest.Text
+
+	repositories.UpdatePost(post)
 
 	res.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(res).Encode(post)
